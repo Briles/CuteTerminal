@@ -85,24 +85,24 @@ input {
 //     width: 36px;
 //     height: 30px;
 
-//     background-image: url('../assets/logomark.png');
+//     background-image: url('assets/logomark.png');
 // }
 
 .logo-type {
     width: 171px;
     height: 30px;
 
-    background-image: url('../assets/logotype.png');
+    background-image: url('assets/logotype.png');
 }
 
 @media
 (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) {
     // .logo-mark {
-    //     background-image: url('../assets/logomark@2x.png');
+    //     background-image: url('assets/logomark@2x.png');
     // }
     .logo-type {
-        background-image: url('../assets/logotype@2x.png');
+        background-image: url('assets/logotype@2x.png');
     }
 }
 
