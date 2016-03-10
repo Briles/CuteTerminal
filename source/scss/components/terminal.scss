@@ -1,0 +1,210 @@
+.terminal {
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    width: 100%;
+    height: 400px;
+
+    transition: all 200ms ease-in-out;
+    text-align: left;
+    text-decoration: none;
+
+    color: $slate;
+    border-radius: 4px;
+    background: fade-out($black, .25);
+    box-shadow: 0 4px 20px fade-out($black, .75);
+    &:hover {
+        box-shadow: 0 4px 40px fade-out($black, .45);
+    }
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        content: '';
+
+        filter: blur(5px);
+    }
+}
+
+.terminal-title {
+    font-size: .8em;
+    line-height: 40px;
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    padding: 0 15px;
+
+    background: $offwhite;
+    box-shadow: 0 1px 3px fade-out($black, .89);
+    h2 {
+        font-size: 14px;
+        font-weight: 600;
+
+        letter-spacing: .015em;
+
+        text-shadow: 0 1px 3px $white;
+    }
+}
+
+.terminal-controls {
+    line-height: 12px;
+
+    position: absolute;
+    top: 50%;
+    left: 15px;
+
+    display: block;
+
+    margin-top: -6px;
+    span {
+        display: inline-block;
+
+        width: 12px;
+        height: 12px;
+        margin-left: 7px;
+
+        vertical-align: top;
+
+        border-radius: 50%;
+        &:nth-child(1) {
+            margin: 0;
+
+            border: 1px solid hsl(3, 79%, 62%);
+            background: hsl(3, 100%, 67%);
+        }
+        &:nth-child(2) {
+            border: 1px solid hsl(40, 92%, 59%);
+            background: hsl(42, 100%, 59%);
+        }
+        &:nth-child(3) {
+            border: 1px solid hsl(129, 63%, 43%);
+            background: hsl(129, 67%, 48%);
+        }
+    }
+    + h2 {
+        margin-left: 65px;
+    }
+}
+
+.terminal-body {
+    line-height: 32px;
+
+    position: relative;
+
+    padding: 15px;
+
+    color: $white;
+    code, pre {
+        font-family: 'Hack', monospace;
+        font-size: 14px;
+        font-weight: 700;
+
+        letter-spacing: .02em;
+    }
+}
+
+.syntax {
+    // Ansi 0 Color
+    .a0 {
+        color: rgb(29, 29, 25);
+    }
+    // Ansi 1 Color
+    .a1 {
+        color: rgb(210, 28, 36);
+    }
+    // Ansi 10 Color
+    .a10 {
+        color: rgb(168, 213, 45);
+    }
+    // Ansi 11 Color
+    .a11 {
+        color: rgb(217, 208, 103);
+    }
+    // Ansi 12 Color
+    .a12 {
+        color: rgb(98, 186, 209);
+    }
+    // Ansi 13 Color
+    .a13 {
+        color: rgb(106, 91, 188);
+    }
+    // Ansi 14 Color
+    .a14 {
+        color: rgb(215, 56, 101);
+    }
+    // Ansi 15 color
+    .a15 {
+        color: rgb(255, 255, 255);
+    }
+    // Ansi 2 Color
+    .a2 {
+        color: rgb(168, 213, 45);
+    }
+    // Ansi 3 Color
+    .a3 {
+        color: rgb(217, 208, 103);
+    }
+    // Ansi 4 Color
+    .a4 {
+        color: rgb(98, 186, 209);
+    }
+    // Ansi 5 Color
+    .a5 {
+        color: rgb(106, 91, 188);
+    }
+    // Ansi 6 Color
+    .a6 {
+        color: rgb(215, 56, 101);
+    }
+    // Ansi 7 Color
+    .a7 {
+        color: rgb(255, 255, 255);
+    }
+    // Ansi 8 Color
+    .a8 {
+        color: rgb(29, 29, 25);
+    }
+    // Ansi 9 Color
+    .a9 {
+        color: rgb(210, 43, 36);
+    }
+    // Background Color
+    .background {
+        color: rgb(30, 30, 26);
+    }
+    // Bold Color
+    .bold {
+        color: rgb(255, 255, 255);
+    }
+    // Cursor Color
+    .cursor {
+        color: rgb(113, 130, 132);
+    }
+    // Cursor Text Color
+    .cursor-text {
+        color: rgb(0, 40, 50);
+    }
+    // Foreground Color
+    .foreground {
+        color: rgb(247, 247, 240);
+    }
+    // Selected Text Color
+    .selected-text {
+        color: rgb(255, 255, 255);
+    }
+    // Selection Color
+    .selection {
+        color: rgb(43, 42, 36);
+    }
+}

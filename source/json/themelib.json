@@ -1,0 +1,28 @@
+{
+    "Monokai":
+    {
+        "ANSI 0": "#1d1d19",
+        "ANSI 1": "#d11c24",
+        "ANSI 2": "#a7d42c",
+        "ANSI 3": "#d8d067",
+        "ANSI 4": "#61b9d0",
+        "ANSI 5": "#695abc",
+        "ANSI 6": "#d63865",
+        "ANSI 7": "#ffffff",
+        "ANSI 8": "#1d1d19",
+        "ANSI 9": "#d22a24",
+        "ANSI 10": "#a7d42c",
+        "ANSI 11": "#d8d067",
+        "ANSI 12": "#61b9d0",
+        "ANSI 13": "#695abc",
+        "ANSI 14": "#d63865",
+        "ANSI 15": "#ffffff",
+        "Background": "#1d1e1a",
+        "Bold": "#ffffff",
+        "Cursor Text": "#02831",
+        "Cursor": "#708284",
+        "Foreground": "#f6f6ef",
+        "Selected Text": "#ffffff",
+        "Selection": "#9e54f"
+    }
+}

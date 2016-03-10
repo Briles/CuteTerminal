@@ -1,0 +1,50 @@
+//// Globals
+// Variables
+@import 'variables';
+
+// Mixins
+@import 'mixins';
+
+// Animations
+@import 'animations';
+
+// Boilerplate Styles
+@import 'boilerplate';
+
+//// Patterns
+// Modals
+@import 'patterns/modals';
+
+// Buttons
+// @import 'patterns/buttons';
+
+// Buttons
+@import 'patterns/tooltips';
+
+//// Components
+// Header
+@import 'components/header';
+
+// Workspace
+@import 'components/workspace';
+
+// Swatches
+@import 'components/swatches';
+
+// Colorpicker
+@import 'components/colorpicker';
+
+// Terminal
+// @import 'components/terminal';
+
+// Search
+// @import 'components/search';
+
+// Themelist
+@import 'components/themelist';
+
+// Editor
+// @import 'components/editor';
+
+// Toolbar
+@import 'components/toolbar';

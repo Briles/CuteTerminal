@@ -1,0 +1,28 @@
+{
+    "name": "CuteTerminal",
+    "license": "MIT",
+    "copyright": "2016",
+    "devDependencies":
+    {
+        "autoprefixer": "*",
+        "grunt": "*",
+        "grunt-browserify": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-cssmin": "*",
+        "grunt-contrib-htmlmin": "*",
+        "grunt-contrib-jade": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-csscomb": "*",
+        "grunt-jsonlint": "*",
+        "grunt-postcss": "*",
+        "grunt-sass": "*",
+        "grunt-uncss": "*",
+        "install": "*",
+        "normalize.css": "*"
+    },
+    "dependencies":
+    {
+        "colr-convert": "*"
+    }
+}

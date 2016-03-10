@@ -1,0 +1,27 @@
+.masthead {
+    padding: 20px;
+
+    text-align: left;
+
+    background-color: $pink;
+}
+
+.bio {
+    font-weight: 500;
+    line-height: 30px;
+
+    float: right;
+
+    color: $white;
+    > a {
+        text-decoration: none;
+
+        color: $white;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .masthead {
+        text-align: center;
+    }
+}

@@ -1,0 +1,225 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font: normal normal 400 14px / 24px $font-stack;
+
+    height: 100%;
+
+    text-rendering: optimizeLegibility;
+
+    color: $black-on-color;
+    background: hsl(0, 0%, 97%);
+
+    -webkit-font-smoothing: antialiased;
+}
+
+ul, ol, code, pre {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+i {
+    vertical-align: middle;
+}
+
+fieldset {
+    position: relative;
+
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    outline: none;
+}
+
+.clearfix {
+    &::before, &::after {
+        display: table;
+
+        content: ' ';
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+::-webkit-input-placeholder {
+    color: $black-on-color;
+}
+:-moz-placeholder {
+    opacity: 1;
+    color: $black-on-color;
+}
+::-moz-placeholder {
+    opacity: 1;
+    color: $black-on-color;
+}
+:-ms-input-placeholder {
+    color: $black-on-color;
+}
+
+.logo-mark, .logo-type {
+    font: 0/0 a;
+
+    display: inline-block;
+
+    vertical-align: middle;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+// .logo-mark {
+//     width: 36px;
+//     height: 30px;
+
+//     background-image: url('../assets/logomark.png');
+// }
+
+.logo-type {
+    width: 171px;
+    height: 30px;
+
+    background-image: url('../assets/logotype.png');
+}
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    // .logo-mark {
+    //     background-image: url('../assets/logomark@2x.png');
+    // }
+    .logo-type {
+        background-image: url('../assets/logotype@2x.png');
+    }
+}
+
+.main-content {
+    padding: 15px;
+}
+
+.browserupgrade {
+    display: block;
+
+    width: 100%;
+    padding: 15px 20px;
+
+    color: $white;
+    background-color: #ef2e27;
+    p {
+        display: inline;
+
+        margin: 0;
+        margin-left: 10px;
+
+        vertical-align: middle;
+    }
+}
+
+.flexing {
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.chameleon-input {
+    display: inline-block;
+
+    width: 100%;
+
+    transition: all 140ms ease-in-out;
+    white-space: nowrap;
+    letter-spacing: .024em;
+
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.dropdown {
+    line-height: 24px;
+
+    position: absolute;
+    z-index: 100001;
+    top: 0;
+    right: 0;
+
+    display: none;
+
+    transition: all 140ms ease-in-out;
+
+    background-color: $white;
+    box-shadow: $shadow-dropdown;
+}
+
+.has-dropdown {
+    &:hover {
+        > .dropdown {
+            display: block;
+        }
+    }
+}
+
+.dropdown-menu {
+    display: block;
+
+    padding: 5px 0;
+
+    list-style-type: none;
+}
+
+.dropdown-menu-item {
+    font-weight: 400;
+    line-height: 34px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0 16px;
+
+    text-align: left;
+    white-space: nowrap;
+    text-decoration: none;
+
+    color: $black-on-color;
+    &:hover, &:focus {
+        background-color: $offwhite;
+    }
+}
+
+.dropdown-menu-item-text {
+    margin-left: 10px;
+
+    color: $slate;
+}
+
+.fluid {
+    display: table;
+
+    width: 100%;
+}
+
+.fluid-item {
+    display: table-cell;
+
+    vertical-align: middle;
+    &.fluid-fill-empty {
+        width: 100%;
+    }
+}

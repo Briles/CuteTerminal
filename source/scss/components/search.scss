@@ -1,0 +1,40 @@
+.search {
+    position: relative;
+
+    padding: 20px 0;
+
+    background: $white;
+    input[type=search] {
+        font-weight: 600;
+
+        display: block;
+
+        box-sizing: border-box;
+        width: 100%;
+        padding: 9px 20px;
+
+        transition: all 200ms ease-in-out;
+
+        border: 0;
+        border-radius: 20px;
+        outline: none;
+        background: $offwhite;
+        &::-webkit-input-placeholder {
+            color: $slate;
+        }
+        &:-moz-placeholder {
+            opacity: 1;
+            color: $slate;
+        }
+        &::-moz-placeholder {
+            opacity: 1;
+            color: $slate;
+        }
+        &:-ms-input-placeholder {
+            color: $slate;
+        }
+        &:hover, &:focus {
+            background: darken($offwhite, 2);
+        }
+    }
+}

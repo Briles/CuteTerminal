@@ -1,0 +1,71 @@
+$white: #fff;
+$black: #000;
+
+// Brand Colors
+$offwhite: hsl(0, 0%, 93%);
+$pink: hsl(340, 65%, 62%);
+$peach: hsl(23, 86%, 78%);
+$pink-peach: mix($pink, $peach);
+$pastel-yellow: hsl(48, 100%, 87%);
+$slate: hsl(340, 7%, 14%);
+$wine: hsl(340, 34%, 28%);
+$white-on-color: hsla(0, 100%, 100%, .47);
+$black-on-color: hsla(0, 100%, 0%, .37);
+$black-on-color-opaque: hsl(0, 0%, 63%);
+$shadow-subtle: 0 0 2px hsla(0, 0%, 0%, .2);
+$shadow-depth: 0 2px 5px hsla(0, 0%, 0%, .1);
+$shadow-dropdown: 0 1px 4px hsla(0, 0%, 0%, .27);
+
+// Default Theme Colors
+$ansi-0: rgb(0, 0, 0); // Black Normal
+$ansi-8: rgb(127, 127, 127); // Black Bright
+$ansi-1: rgb(205, 0, 0); // Red Normal
+$ansi-9: rgb(255, 0, 0); // Red Bright
+$ansi-2: rgb(0, 205, 0); // Green Normal
+$ansi-10: rgb(0, 255, 0); // Green Bright
+$ansi-3: rgb(205, 205, 0); // Yellow Normal
+$ansi-11: rgb(255, 255, 0); // Yellow Bright
+$ansi-4: rgb(0, 0, 238); // Blue Normal
+$ansi-12: rgb(92, 92, 255); // Blue Bright
+$ansi-5: rgb(205, 0, 205); // Magenta Normal
+$ansi-13: rgb(255, 0, 255); // Magenta Bright
+$ansi-6: rgb(0, 205, 205); // Cyan Normal
+$ansi-14: rgb(0, 255, 255); // Cyan Bright
+$ansi-7: rgb(229, 229, 229); // White Normal
+$ansi-15: rgb(255, 255, 255); // White Bright
+$background: rgb(0, 0, 0);
+$bold: rgb(255, 255, 255);
+$cursor-text: rgb(0, 0, 0);
+$cursor: rgb(255, 255, 255);
+$foreground: rgb(255, 255, 255);
+$selected-text: rgb(0, 0, 0);
+$selection: rgb(193, 225, 255);
+
+$swatches: (
+            'ansi-0':$ansi-0,
+            'ansi-8':$ansi-8,
+            'ansi-1':$ansi-1,
+            'ansi-9':$ansi-9,
+            'ansi-2':$ansi-2,
+            'ansi-10':$ansi-10,
+            'ansi-3':$ansi-3,
+            'ansi-11':$ansi-11,
+            'ansi-4':$ansi-4,
+            'ansi-12':$ansi-12,
+            'ansi-5':$ansi-5,
+            'ansi-13':$ansi-13,
+            'ansi-6':$ansi-6,
+            'ansi-14':$ansi-14,
+            'ansi-7':$ansi-7,
+            'ansi-15':$ansi-15,
+            'background':$background,
+            'bold':$bold,
+            'cursor-text':$cursor-text,
+            'cursor':$cursor,
+            'foreground':$foreground,
+            'selected-text':$selected-text,
+            'selection':$selection
+);
+
+// Misc
+$font-stack: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
