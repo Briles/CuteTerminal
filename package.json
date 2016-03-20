@@ -1,28 +1,26 @@
 {
-    "name": "CuteTerminal",
-    "license": "MIT",
-    "copyright": "2016",
-    "devDependencies":
-    {
-        "autoprefixer": "*",
-        "grunt": "*",
-        "grunt-browserify": "*",
-        "grunt-contrib-concat": "*",
-        "grunt-contrib-cssmin": "*",
-        "grunt-contrib-htmlmin": "*",
-        "grunt-contrib-jade": "*",
-        "grunt-contrib-uglify": "*",
-        "grunt-contrib-watch": "*",
-        "grunt-csscomb": "*",
-        "grunt-jsonlint": "*",
-        "grunt-postcss": "*",
-        "grunt-sass": "*",
-        "grunt-uncss": "*",
-        "install": "*",
-        "normalize.css": "*"
-    },
-    "dependencies":
-    {
-        "colr-convert": "*"
-    }
+  "name": "CuteTerminal",
+  "license": "MIT",
+  "copyright": "2016",
+  "devDependencies": {
+    "autoprefixer": "^6.3.4",
+    "grunt": "*",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^1.1.0",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-csscomb": "*",
+    "grunt-jsonlint": "*",
+    "grunt-postcss": "*",
+    "grunt-sass": "*",
+    "grunt-uncss": "*",
+    "install": "^0.6.1",
+    "normalize.css": "^4.0.0"
+  },
+  "dependencies": {
+    "colr-convert": "*"
+  }
 }
