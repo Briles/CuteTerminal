@@ -1,7 +1,1 @@
-.color-swatch {
-    @each $classname, $swatch-color in $swatches {
-        &.#{$classname} {
-            background-color: $swatch-color;
-        }
-    }
-}
+

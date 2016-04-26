@@ -7,134 +7,134 @@
 //
 
 .tip {
-    position: relative;
+  position: relative;
+  &::before, &::after {
+    position: absolute;
+    z-index: 10000001;
+
+    display: none;
+
+    pointer-events: none;
+  }
+  &::before {
+    width: 0;
+    height: 0;
+
+    content: '';
+
+    color: $slate;
+    border: 5px solid transparent;
+  }
+  &::after {
+    font: normal 500 12px / 24px $font-stack;
+
+    padding: 5px 8px;
+
+    content: attr(aria-label);
+    text-align: center;
+    white-space: pre;
+    text-decoration: none;
+    letter-spacing: .02em;
+    text-transform: initial;
+
+    color: $white;
+    background: $slate;
+
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+  &:hover {
     &::before, &::after {
-        position: absolute;
-        z-index: 10000001;
+      display: inline-block;
 
-        display: none;
-
-        pointer-events: none;
+      text-decoration: none;
     }
-    &::before {
-        width: 0;
-        height: 0;
-
-        content: '';
-
-        color: $slate;
-        border: 5px solid transparent;
-    }
-    &::after {
-        font: normal 500 12px / 24px $font-stack;
-
-        padding: 5px 8px;
-
-        content: attr(aria-label);
-        text-align: center;
-        white-space: pre;
-        text-decoration: none;
-        letter-spacing: .02em;
-        text-transform: initial;
-
-        color: $white;
-        background: $slate;
-
-        -webkit-font-smoothing: subpixel-antialiased;
-    }
-    &:hover {
-        &::before, &::after {
-            display: inline-block;
-
-            text-decoration: none;
-        }
-    }
+  }
 }
 
 .tip-n::before, .tip-ne::before, .tip-nw::before {
-    top: -5px;
-    right: 50%;
-    bottom: auto;
+  top: -5px;
+  right: 50%;
+  bottom: auto;
 
-    margin-right: -5px;
+  margin-right: -5px;
 
-    border-top-color: $slate;
+  border-top-color: $slate;
 }
 
 .tip-n::after, .tip-ne::after, .tip-nw::after {
-    right: 50%;
-    bottom: 100%;
+  right: 50%;
+  bottom: 100%;
 
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .tip-s::before, .tip-se::before, .tip-sw::before {
-    top: auto;
-    right: 50%;
-    bottom: -5px;
+  top: auto;
+  right: 50%;
+  bottom: -5px;
 
-    margin-right: -5px;
+  margin-right: -5px;
 
-    border-bottom-color: $slate;
+  border-bottom-color: $slate;
 }
 
 .tip-s::after, .tip-se::after, .tip-sw::after {
-    top: 100%;
-    right: 50%;
+  top: 100%;
+  right: 50%;
 
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .tip-s::after, .tip-n::after {
-    transform: translateX(50%);
+  transform: translateX(50%);
 }
 
 .tip-e::before, .tip-w::before {
-    top: 50%;
-    bottom: 50%;
+  top: 50%;
+  bottom: 50%;
 
-    margin-top: -5px;
+  margin-top: -5px;
 }
 
 .tip-w {
-    &::before {
-        left: -5px;
+  &::before {
+    left: -5px;
 
-        border-left-color: $slate;
-    }
-    &::after {
-        right: 100%;
+    border-left-color: $slate;
+  }
+  &::after {
+    right: 100%;
 
-        margin-right: 5px;
-    }
+    margin-right: 5px;
+  }
 }
 
 .tip-e {
-    &::before {
-        right: -5px;
+  &::before {
+    right: -5px;
 
-        border-right-color: $slate;
-    }
-    &::after {
-        left: 100%;
+    border-right-color: $slate;
+  }
+  &::after {
+    left: 100%;
 
-        margin-left: 5px;
-    }
+    margin-left: 5px;
+  }
 }
 
 .tip-e::after, .tip-w::after {
-    bottom: 50%;
+  bottom: 50%;
 
-    transform: translateY(50%);
+  transform: translateY(50%);
 }
 
 .tip-nw::after, .tip-sw::after {
-    margin-right: -15px;
+  margin-right: -15px;
 }
 
 .tip-ne::after, .tip-se::after {
-    right: auto;
-    left: 50%;
+  right: auto;
+  left: 50%;
 
-    margin-left: -15px;
+  margin-left: -15px;
 }

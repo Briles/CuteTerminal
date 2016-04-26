@@ -1,3 +1,3 @@
-var app = angular.module('app', ["ngAnimate"]);
+var app = angular.module('cuteTerminal', ['ngAnimate']);
 
-app.controller('WorkspaceCtrl', require('./workspace'));
+app.controller('workspaceCtrl', require('./workspace'));

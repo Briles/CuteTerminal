@@ -85,7 +85,7 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'main.min.js': ['source/js/lib/colr.min.js', 'main.min.js'],
+          'main.min.js': ['main.min.js'],
         },
       },
     },
@@ -93,7 +93,6 @@ module.exports = function (grunt) {
       compile: {
         options: {
           data: {
-            themes: grunt.file.readJSON('source/json/themelib.json'),
             dev: false,
           },
         },

@@ -1,115 +1,61 @@
 .colorpicker {
-    height: 100%;
-    padding: 20px;
+  height: 100%;
+  padding: 20px;
 
-    background: $white;
+  background: $white;
 }
 
 .colorpicker-head {
-    line-height: 45px;
-
-    position: relative;
-
-    display: block;
-
-    width: 100%;
-    padding-right: 54px;
-
-    white-space: nowrap;
+  line-height: 45px;
 }
 
 .swatch-label {
-    font-size: 16px;
-    font-weight: 500;
+  font-size: 16px;
+  font-weight: 500;
 
-    display: inline-block;
+  display: block;
 
-    padding-left: 15px;
-
-    vertical-align: middle;
+  margin-bottom: 6px;
 }
 
 .colorpicker-close {
-    position: absolute;
-    top: 50%;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    margin-top: -12px;
-
-    cursor: pointer;
-    transition: color 140ms ease-in-out;
-    &:hover {
-        color: $slate;
-    }
+  cursor: pointer;
+  transition: color 140ms ease-in-out;
+  &:hover {
+    color: $slate;
+  }
 }
 
 .colorpicker-body {
-    padding-top: 20px;
-}
+  position: relative;
 
-.colorpicker-fieldset {
-    margin-bottom: 20px;
-
-    text-align: center;
-    &:last-of-type {
-        margin-bottom: 0;
-    }
-}
-.colorpicker-field-wrapper {
+  padding: 0 45px 0 15px;
 }
 
 .colorpicker-field {
-    $def-size: 65px;
+  font-size: 14px;
+  font-weight: 500;
 
-    font-size: 14px;
-    font-weight: 500;
+  display: block;
 
-    display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 0;
 
-    width: $def-size;
-    height: $def-size;
-    margin: 0 auto;
+  transition: all 140ms ease-in-out;
+  text-align: center;
+  letter-spacing: .1em;
 
-    transition: all 140ms ease-in-out;
-    text-align: center;
-    letter-spacing: .1em;
+  color: $slate;
+  border: 0;
+  border-radius: 3px;
+  background: hsl(0, 0%, 97%);
 
-    color: $slate;
-    border: 0;
-    border-radius: 50%;
-    background: hsl(0, 0%, 97%);
-
-    -moz-appearance: textfield;
-    &.large {
-        $size: 100px;
-
-        width: $size;
-        height: $size;
-    }
-    &:focus {
-        background: hsl(0, 0%, 91%);
-    }
-    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
-        margin: 0;
-
-        -webkit-appearance: none;
-    }
-    &.ng-invalid {
-        color: red;
-    }
-}
-
-@media only screen
-and (max-height : 320px) {
-    .colorpicker-fieldset {
-        margin-bottom: 0;
-    }
-    .colorpicker-field {
-        height: 30px;
-
-        border-radius: 3px;
-        &.large {
-            height: 30px;
-        }
-    }
+  &:focus {
+    background: hsl(0, 0%, 91%);
+  }
 }

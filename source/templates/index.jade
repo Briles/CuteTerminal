@@ -1,165 +1,112 @@
 doctype html
-html(ng-app="app")
+html(ng-app="cuteTerminal" ng-controller="workspaceCtrl as workspace")
   head
     meta(charset="utf-8")
-    meta(content="IE=edge", http-equiv="X-UA-Compatible")
-    meta(content="text/html; charset=UTF-8", http-equiv="content-type")
+    meta(content="IE=edge" http-equiv="X-UA-Compatible")
+    meta(content="text/html; charset=UTF-8" http-equiv="content-type")
     title Cute Terminal!
-    meta(content="", name="description")
-    meta(content="width=device-width,initial-scale=1", name="viewport")
-    link(href="favicon.ico", rel="icon", type="image/x-icon")
-    link(href="main.min.css", media="all", rel="stylesheet")
-    link(href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Material+Icons", media="all", rel="stylesheet")
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js" defer)
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js" defer)
-    //- script(src="https://cdn.jsdelivr.net/tinycolor/1.3.0/tinycolor-min.js" defer)
-    //- Main js
-    script(src="main.min.js" defer)
-    //- LiveReload
-    - if (dev === true)
-      script(src="http://192.168.1.4:35729/livereload.js")
+    meta(content="An app for creating and sharing themes for all your terminals." name="description")
+    meta(content="width=device-width,initial-scale=1,minimum-scale=1" name="viewport")
+    link(href="favicon.ico" rel="icon" type="image/x-icon")
+    link(href="main.min.css" media="all" rel="stylesheet")
+    link(
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Material+Icons"
+      media="all"
+      rel="stylesheet"
+    )
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js")
+    script(src="https://cdn.jsdelivr.net/tinycolor/1.3.0/tinycolor-min.js")
+    script(src="main.min.js")
   body
-    noscript.browserupgrade
-      i.material-icons &#57345;
-      p Your browser may not display this site properly. Please enable JavaScript.
-    <!--[if lte IE 10]>
-    <div class="browserupgrade"><i class="material-icons">&#57345;</i><p>Your browser may not display this site properly. Please upgrade to Internet Explorer 10+, <a href="https://google.com/chrome">Chrome</a>, or <a href="https://mozilla.org/firefox">Firefox</a>.</p></div>
-    <!--<![endif]-->
     header
       .masthead
         .logo-type Cute Terminal!
         .bio A project by #{''}
           a(href="http://brianreilly.me/") Brian Reilly
-    .main-content(role="main", ng-controller="WorkspaceCtrl as workspace")
+    .main-content(role="main")
       .popover(ng-class="{active : colorpicker.isActive}")
-        .colorpicker
-          .colorpicker-head
-            span.swatch.large(style="background-color: rgb({{colorpicker.rgb.r}},{{colorpicker.rgb.g}},{{colorpicker.rgb.b}})")
-            span.swatch-label {{colorpicker.colorLabel}}
-            i.colorpicker-close.material-icons(ng-click="colorpicker.close()") &#58829;
-          .colorpicker-body
-            .colorpicker-fieldset.fluid
-              .fluid-item.colorpicker-field-wrapper
-                input#hex.colorpicker-field.large(type="text", ng-minlength="1", ng-maxlength="30", spellcheck="false", ng-model="colorpicker.hex", ng-change="colorpicker.updateColor('hex')", ng-trim="true")
-                label(for="hex") Hex
-            .colorpicker-fieldset.fluid
-              .fluid-item.colorpicker-field-wrapper
-                input#r.colorpicker-field(type="number", ng-minlength="1", ng-maxlength="3", max="255", min="0", ng-model="colorpicker.rgb.r", ng-change="colorpicker.updateColor('rgb')", ng-trim="true", ng-pattern="/[0-9]{1,3}/")
-                label(for="r") R
-              .fluid-item.colorpicker-field-wrapper
-                input#g.colorpicker-field(type="number", ng-minlength="1", ng-maxlength="3", max="255", min="0", ng-model="colorpicker.rgb.g", ng-change="colorpicker.updateColor('rgb')", ng-trim="true", ng-pattern="/[0-9]{1,3}/")
-                label(for="g") G
-              .fluid-item.colorpicker-field-wrapper
-                input#b.colorpicker-field(type="number", ng-minlength="1", ng-maxlength="3", max="255", min="0", ng-model="colorpicker.rgb.b", ng-change="colorpicker.updateColor('rgb')", ng-trim="true", ng-pattern="/[0-9]{1,3}/")
-                label(for="b") B
-            .colorpicker-fieldset.fluid
-              .fluid-item.colorpicker-field-wrapper
-                input#h.colorpicker-field(type="number", ng-minlength="1", ng-maxlength="3", max="360", min="0", ng-model="colorpicker.hsl.h", ng-change="colorpicker.updateColor('hsl')", ng-trim="true", ng-pattern="/[0-9]{1,3}/")
-                label(for="h") H
-              .fluid-item.colorpicker-field-wrapper
-                input#s.colorpicker-field(type="number", ng-minlength="1", ng-maxlength="3", max="100", min="0", ng-model="colorpicker.hsl.s", ng-change="colorpicker.updateColor('hsl')", ng-trim="true", ng-pattern="/[0-9]{1,3}/")
-                label(for="s") S
-              .fluid-item.colorpicker-field-wrapper
-                input#l.colorpicker-field(type="number", ng-minlength="1", ng-maxlength="3", max="100", min="0", ng-model="colorpicker.hsl.l", ng-change="colorpicker.updateColor('hsl')", ng-trim="true", ng-pattern="/[0-9]{1,3}/")
-                label(for="l") L
+        .colorpicker.fluid
+          .colorpicker-head.fluid-item
+            span.swatch.large(ng-style="{'background-color': activeColor()}")
+          .colorpicker-body.fluid-item.fluid-fill-empty
+            label.swatch-label(for="color-input") {{colorpicker.colorKey}}
+            input#color-input.colorpicker-field(
+              type="text"
+              ng-minlength="1"
+              ng-maxlength="30"
+              spellcheck="false"
+              ng-model="colorpicker.color"
+              ng-change="updatePaletteColor()"
+              ng-trim="true"
+            )
+            i.colorpicker-close.material-icons(ng-click="hideColorpicker()") close
       .workspace
         .fluid.workspace-head
           .fluid-item.fluid-fill-empty
-            input.chameleon-input.workspace-name(type="text", maxlength="30", placeholder="New Workspace", ng-model="workspace.Name", ng-change="workspace.updateStorage()")
+            h1.chameleon-input.workspace-name Workspace
           .fluid-item
             .toolbar.dark
-              a.toolbar-item.tip.tip-n(href="" aria-label="New Theme", ng-click="workspace.addTheme()")
-                i.material-icons &#57403;
-              a.toolbar-item.tip.tip-nw(href="" aria-label="Clear Workspace", ng-click="workspace.clear()")
-                i.material-icons &#59506;
+              button.toolbar-item.tip.tip-n(aria-label="New Theme" ng-click="addTheme()")
+                i.material-icons playlist_add
+              button.toolbar-item.tip.tip-nw(aria-label="Clear Workspace" ng-click="clearWorkspace()")
+                i.material-icons delete_sweep
         .flexing
-          .theme-card-wrapper(ng-repeat="theme in workspace.Themes")
+          .theme-card-wrapper(ng-repeat="(id, theme) in workspace.themes")
             .theme-card
               .fluid.theme-card-head
                 .fluid-item.fluid-fill-empty
-                  input.theme-name(type="text", maxlength="24", placeholder="New Theme", ng-model="theme.Name", ng-change="workspace.updateStorage()")
+                  input.theme-name(
+                    type="text"
+                    maxlength="24"
+                    placeholder="New Theme"
+                    ng-model="theme.name"
+                  )
                 .fluid-item
                   ul.toolbar.dark
                     li.toolbar-item.has-dropdown(aria-label="More Theme Commands")
-                      i.material-icons &#58836;
+                      i.material-icons more_vert
                       .dropdown
                         ul.dropdown-menu
                           li.dropdown-menu-item
-                            i.material-icons &#58052;
+                            i.material-icons file_download
                             span.dropdown-menu-item-text Download Theme
-                          li.dropdown-menu-item(ng-click="workspace.deleteTheme(theme)")
-                            i.material-icons &#59506;
+                          li.dropdown-menu-item(ng-click="deleteTheme()")
+                            i.material-icons delete_forever
                             span.dropdown-menu-item-text Delete Theme
               .theme-card-body
                 ul.theme-palette
-                  li.swatch.tip.tip-n(aria-label="ANSI 0 (Black Normal)" style="background-color: {{theme['ANSI 0']}}", ng-click="colorpicker.populate('ANSI 0 (Black Normal)', theme['ANSI 0'], theme.ID, 'ANSI 0')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 8 (Black Bright)" style="background-color: {{theme['ANSI 8']}}", ng-click="colorpicker.populate('ANSI 8 (Black Bright)', theme['ANSI 8'], theme.ID, 'ANSI 8')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 1 (Red Normal)" style="background-color: {{theme['ANSI 1']}}", ng-click="colorpicker.populate('ANSI 1 (Red Normal)', theme['ANSI 1'], theme.ID, 'ANSI 1')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 9 (Red Bright)" style="background-color: {{theme['ANSI 9']}}", ng-click="colorpicker.populate('ANSI 9 (Red Bright)', theme['ANSI 9'], theme.ID, 'ANSI 9')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 2 (Green Normal)" style="background-color: {{theme['ANSI 2']}}", ng-click="colorpicker.populate('ANSI 2 (Green Normal)', theme['ANSI 2'], theme.ID, 'ANSI 2')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 10 (Green Bright)" style="background-color: {{theme['ANSI 10']}}", ng-click="colorpicker.populate('ANSI 10 (Green Bright)', theme['ANSI 10'], theme.ID, 'ANSI 10')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 3 (Yellow Normal)" style="background-color: {{theme['ANSI 3']}}", ng-click="colorpicker.populate('ANSI 3 (Yellow Normal)', theme['ANSI 3'], theme.ID, 'ANSI 3')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 11 (Yellow Bright)" style="background-color: {{theme['ANSI 11']}}", ng-click="colorpicker.populate('ANSI 11 (Yellow Bright)', theme['ANSI 11'], theme.ID, 'ANSI 11')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 4 (Blue Normal)" style="background-color: {{theme['ANSI 4']}}", ng-click="colorpicker.populate('ANSI 4 (Blue Normal)', theme['ANSI 4'], theme.ID, 'ANSI 4')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 12 (Blue Bright)" style="background-color: {{theme['ANSI 12']}}", ng-click="colorpicker.populate('ANSI 12 (Blue Bright)', theme['ANSI 12'], theme.ID, 'ANSI 12')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 5 (Magenta Normal)" style="background-color: {{theme['ANSI 5']}}", ng-click="colorpicker.populate('ANSI 5 (Magenta Normal)', theme['ANSI 5'], theme.ID, 'ANSI 5')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 13 (Magenta Bright)" style="background-color: {{theme['ANSI 13']}}", ng-click="colorpicker.populate('ANSI 13 (Magenta Bright)', theme['ANSI 13'], theme.ID, 'ANSI 13')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 6 (Cyan Normal)" style="background-color: {{theme['ANSI 6']}}", ng-click="colorpicker.populate('ANSI 6 (Cyan Normal)', theme['ANSI 6'], theme.ID, 'ANSI 6')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 14 (Cyan Bright)" style="background-color: {{theme['ANSI 14']}}", ng-click="colorpicker.populate('ANSI 14 (Cyan Bright)', theme['ANSI 14'], theme.ID, 'ANSI 14')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 7 (White Normal)" style="background-color: {{theme['ANSI 7']}}", ng-click="colorpicker.populate('ANSI 7 (White Normal)', theme['ANSI 7'], theme.ID, 'ANSI 7')")
-                  li.swatch.tip.tip-n(aria-label="ANSI 15 (White Bright)" style="background-color: {{theme['ANSI 15']}}", ng-click="colorpicker.populate('ANSI 15 (White Bright)', theme['ANSI 15'], theme.ID, 'ANSI 15')")
-                  li.swatch.tip.tip-n(aria-label="Foreground" style="background-color: {{theme['Foreground']}}", ng-click="colorpicker.populate('Foreground', theme['Foreground'], theme.ID, 'Foreground')")
-                  li.swatch.tip.tip-n(aria-label="Background" style="background-color: {{theme['Background']}}", ng-click="colorpicker.populate('Background', theme['Background'], theme.ID, 'Background')")
-                  li.swatch.tip.tip-n(aria-label="Selection" style="background-color: {{theme['Selection']}}", ng-click="colorpicker.populate('Selection', theme['Selection'], theme.ID, 'Selection')")
-                  li.swatch.tip.tip-n(aria-label="Selected Text" style="background-color: {{theme['Selected Text']}}", ng-click="colorpicker.populate('Selected Text', theme['Selected Text'], theme.ID, 'Selected Text')")
-                  li.swatch.tip.tip-n(aria-label="Cursor" style="background-color: {{theme['Cursor']}}", ng-click="colorpicker.populate('Cursor', theme['Cursor'], theme.ID, 'Cursor')")
-                  li.swatch.tip.tip-n(aria-label="Cursor Text" style="background-color: {{theme['Cursor Text']}}", ng-click="colorpicker.populate('Cursor Text', theme['Cursor Text'], theme.ID, 'Cursor Text')")
-                  li.swatch.tip.tip-n(aria-label="Bold" style="background-color: {{theme['Bold']}}", ng-click="colorpicker.populate('Bold', theme['Bold'], theme.ID, 'Bold')")
+                  li.swatch.tip.tip-n(
+                    ng-repeat="(colorKey, color) in theme.palette"
+                    aria-label="{{colorKey}}"
+                    ng-style="{'background-color': color}"
+                    ng-click="showColorpicker()"
+                  )
       .theme-library
         h1.chameleon-input.workspace-name Theme Library
         .flexing
-          each theme, key in themes
-            - theme.Name = key
-            .theme-card-wrapper
+            .theme-card-wrapper(ng-repeat="(name, theme) in library")
               .theme-card
                 .fluid.theme-card-head
                   .fluid-item.fluid-fill-empty
-                    h1.theme-name= key
+                    h1.theme-name {{name}}
                   .fluid-item
                     ul.toolbar.dark
                       li.toolbar-item.has-dropdown(aria-label="More Theme Commands")
-                        i.material-icons &#58836;
+                        i.material-icons more_vert
                         .dropdown
                           ul.dropdown-menu
                             li.dropdown-menu-item
-                              i.material-icons &#58052;
+                              i.material-icons file_download
                               span.dropdown-menu-item-text Download Theme
-                            li.dropdown-menu-item(ng-click="workspace.addTheme(#{JSON.stringify(theme)})")
-                              i.material-icons &#57677;
+                            li.dropdown-menu-item(ng-click="addTheme(name)")
+                              i.material-icons content_copy
                               span.dropdown-menu-item-text Copy to Workspace
                 .theme-card-body
                   .theme-palette-wrapper
                     ul.theme-palette
-                      li.swatch.tip.tip-n(aria-label="ANSI 0 (Black Normal)" style="background-color:#{theme['ANSI 0']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 8 (Black Bright)" style="background-color:#{theme['ANSI 8']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 1 (Red Normal)" style="background-color:#{theme['ANSI 1']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 9 (Red Bright)" style="background-color:#{theme['ANSI 9']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 2 (Green Normal)" style="background-color:#{theme['ANSI 2']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 10 (Green Bright)" style="background-color:#{theme['ANSI 10']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 3 (Yellow Normal)" style="background-color:#{theme['ANSI 3']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 11 (Yellow Bright)" style="background-color:#{theme['ANSI 11']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 4 (Blue Normal)" style="background-color:#{theme['ANSI 4']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 12 (Blue Bright)" style="background-color:#{theme['ANSI 12']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 5 (Magenta Normal)" style="background-color:#{theme['ANSI 5']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 13 (Magenta Bright)" style="background-color:#{theme['ANSI 13']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 6 (Cyan Normal)" style="background-color:#{theme['ANSI 6']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 14 (Cyan Bright)" style="background-color:#{theme['ANSI 14']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 7 (White Normal)" style="background-color:#{theme['ANSI 7']}")
-                      li.swatch.tip.tip-n(aria-label="ANSI 15 (White Bright)" style="background-color:#{theme['ANSI 15']}")
-                      li.swatch.tip.tip-n(aria-label="Foreground" style="background-color:#{theme['Foreground']}")
-                      li.swatch.tip.tip-n(aria-label="Background" style="background-color:#{theme['Background']}")
-                      li.swatch.tip.tip-n(aria-label="Selection" style="background-color:#{theme['Selection']}")
-                      li.swatch.tip.tip-n(aria-label="Selected Text" style="background-color:#{theme['Selected Text']}")
-                      li.swatch.tip.tip-n(aria-label="Cursor" style="background-color:#{theme['Cursor']}")
-                      li.swatch.tip.tip-n(aria-label="Cursor Text" style="background-color:#{theme['Cursor Text']}")
-                      li.swatch.tip.tip-n(aria-label="Bold" style="background-color:#{theme['Bold']}")
+                      li.swatch.tip.tip-n(
+                        ng-repeat="(colorKey, color) in theme"
+                        aria-label="{{colorKey}}"
+                        ng-style="{'background-color': color}"
+                      )
