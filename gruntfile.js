@@ -1,5 +1,19 @@
 'use strict';
 
+var srcPath = 'source/';
+
+const uglifyJSFiles = {
+  'main.min.js': ['main.min.js'],
+};
+
+const jadeFiles = [{
+  expand: true,
+  cwd: srcPath + 'templates/',
+  src: ['*.jade'],
+  dest: '',
+  ext: '.html',
+}];
+
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -9,20 +23,20 @@ module.exports = function (grunt) {
         precision: 10,
         sourceMap: false,
       },
-      dist: {
+      dev: {
         files: {
-          'main.min.css': 'source/scss/main.scss',
+          'main.min.css': srcPath + 'scss/main.scss',
         },
       },
     },
     concat: {
-      main: {
+      dev: {
         src: ['node_modules/normalize.css/normalize.css', 'main.min.css'],
         dest: 'main.min.css',
       },
     },
     uncss: {
-      dist: {
+      dev: {
         options: {
           ignore: ['.popover.inactive', '.*.ng-*', '.js-*', /::?-[\w\d]+/],
           stylesheets: ['main.min.css'],
@@ -38,17 +52,17 @@ module.exports = function (grunt) {
         map: false,
         processors: [
           require('autoprefixer')({
-            browsers: ['last 2 versions'],
+            browsers: ['> 2%'],
           }),
         ],
       },
-      dist: {
+      dev: {
         src: 'main.min.css',
         dest: 'main.min.css',
       },
     },
     csscomb: {
-      main: {
+      dev: {
         src: 'main.min.css',
         dest: 'main.min.css',
       },
@@ -60,15 +74,15 @@ module.exports = function (grunt) {
         aggressiveMerging: true,
         advanced: true,
       },
-      main: {
+      dev: {
         src: 'main.min.css',
         dest: 'main.min.css',
       },
     },
     browserify: {
-      dist: {
+      dev: {
         files: {
-          'main.min.js': ['source/js/main.js'],
+          'main.min.js': [srcPath + 'js/main.js'],
         },
         options: {},
       },
@@ -76,37 +90,44 @@ module.exports = function (grunt) {
     uglify: {
       options: {
         mangle: false,
-        compress: {
-          drop_console: false,
-        },
-        report: {
-          gzip: true,
-        },
       },
-      dist: {
-        files: {
-          'main.min.js': ['main.min.js'],
+      dev: {
+        options: {
+          compress: {
+            drop_console: false,
+          },
         },
+        files: uglifyJSFiles,
+      },
+      release: {
+        options: {
+          compress: {
+            drop_console: true,
+          },
+        },
+        files: uglifyJSFiles,
       },
     },
     jade: {
-      compile: {
+      dev: {
         options: {
           data: {
-            dev: false,
+            release: false,
           },
         },
-        files: [{
-          expand: true,
-          cwd: 'source/templates/',
-          src: ['{,*/}*.jade'],
-          dest: '',
-          ext: '.html',
-        }],
+        files: jadeFiles,
+      },
+      release: {
+        options: {
+          data: {
+            release: true,
+          },
+        },
+        files: jadeFiles,
       },
     },
     htmlmin: {
-      dist: {
+      dev: {
         options: {
           caseSensitive: true,
           collapseBooleanAttributes: true,
@@ -122,8 +143,8 @@ module.exports = function (grunt) {
           removeCommentsFromCDATA: true,
           removeEmptyAttributes: true,
           removeEmptyElements: false,
-          removeIgnored: true, //
-          removeOptionalTags: true, //
+          removeIgnored: true,
+          removeOptionalTags: true,
           removeRedundantAttributes: false,
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true,
@@ -134,58 +155,55 @@ module.exports = function (grunt) {
         },
       },
     },
-    jsonlint: {
-      themelib: {
-        src: ['source/json/themelib.json'],
-      },
-    },
     watch: {
       options: {
         spawn: false,
         interrupt: true,
         event: ['changed'],
-        livereload: {
-          host: '192.168.1.4',
-          port: 35729,
-        },
+        livereload: true,
       },
       css: {
-        files: ['source/scss/**/*.scss'],
-        tasks: ['sass', 'concat', 'postcss', 'cssmin'],
-      },
-      jade: {
-        files: ['source/templates/**/*.jade'],
-        tasks: ['jade', 'htmlmin', 'sass', 'concat', 'postcss', 'cssmin'],
+        files: [srcPath + 'scss/**/*.scss'],
+        tasks: ['build_css'],
       },
       js: {
-        files: ['source/js/**/*.js'],
-        tasks: ['browserify', 'uglify'],
+        files: [srcPath + 'js/**/*.js'],
+        tasks: ['build_js'],
       },
-      json: {
-        files: ['source/json//**/*.json'],
-        tasks: ['jsonlint', 'jade', 'htmlmin', 'sass', 'concat', 'postcss', 'cssmin'],
+      html: {
+        files: [srcPath + 'templates/**/*.jade'],
+        tasks: ['build_html'],
       },
-      gruntfile: {
-        files: ['gruntfile.js', 'source/json//**/*.json'],
-        tasks: [],
+      data: {
+        files: [srcPath + 'json/*.json'],
+        tasks: ['build_js'],
         options: {
           reload: true,
         },
+      },
+      grunt: {
+        files: ['gruntfile.js'],
       },
     },
   });
 
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-jade');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-csscomb');
-  grunt.loadNpmTasks('grunt-jsonlint');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-uncss');
   grunt.registerTask('default', ['watch']);
+  grunt.registerTask('build_html', ['jade:dev', 'htmlmin']);
+  grunt.registerTask('build_js', ['browserify', 'uglify:dev']);
+  grunt.registerTask('build_css', ['sass', 'concat', 'postcss', 'csscomb', 'cssmin']);
+  grunt.registerTask('build', ['build_html', 'build_css', 'build_js']);
+  grunt.registerTask('release_html', ['jade:release', 'htmlmin']);
+  grunt.registerTask('release_js', ['browserify', 'uglify:release']);
+  grunt.registerTask('release_css', ['build_css']);
+  grunt.registerTask('release', ['release_html', 'release_css', 'release_js']);
 };
